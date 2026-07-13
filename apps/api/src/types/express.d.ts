@@ -1,10 +1,10 @@
-import { User } from '../../models'; // adjust path if needed
+import User from '../models/User';
 
 declare global {
   namespace Express {
     interface Request {
-      user?: User & { schoolId?: number };
-      school?: any; // for tenant middleware
+      user?: User;
+      school?: any;
     }
   }
 }
