@@ -11,7 +11,9 @@ COPY apps/api/package.json ./
 
 RUN npm run build
 
-# Railway automatically sets PORT, so we don't hardcode it
 EXPOSE 8080
+
+# Force the port via environment variable
+ENV PORT=8080
 
 CMD ["npm", "start"]
