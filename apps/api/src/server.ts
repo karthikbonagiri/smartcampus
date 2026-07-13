@@ -1,8 +1,7 @@
 import app from './app';
 
-// Hardcoded port – bypass env issues
-const PORT = 8080;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`✅ SmartCampus API running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
