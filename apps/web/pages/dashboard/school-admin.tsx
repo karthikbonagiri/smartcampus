@@ -1,0 +1,1 @@
+// Placeholder: school-admin.tsx
