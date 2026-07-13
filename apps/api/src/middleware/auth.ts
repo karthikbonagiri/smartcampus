@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
+// Extend Express Request to include our User
 declare global {
   namespace Express {
     interface Request {
@@ -32,7 +33,8 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
 
 export const authorize = (...roles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    if (!req.user || !roles.includes(req.user.role)) {
+    const user = req.user as any; // cast to any to access role
+    if (!user || !roles.includes(user.role)) {
       return res.status(403).json({ error: 'Forbidden' });
     }
     next();
