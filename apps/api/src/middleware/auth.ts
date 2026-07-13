@@ -1,6 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { User } from '../models';
+import User from '../models/User';
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: User;
+    }
+  }
+}
 
 export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
   try {
