@@ -1,16 +1,11 @@
 import { Sequelize } from 'sequelize';
 
-const databaseUrl = process.env.DATABASE_URL;
+// ⚠️ TEMPORARY: Hardcoded for testing – REMOVE LATER
+const DATABASE_URL = 'postgresql://postgres:hLfMZqbPgZSTtvWeieMRGtyeiXpvjmCb@tokaido.proxy.rlwy.net:45942/railway';
 
-if (!databaseUrl) {
-  console.error('❌ DATABASE_URL environment variable is not set!');
-  console.error('Current environment variables:', Object.keys(process.env));
-  process.exit(1);
-}
+console.log('✅ Using database URL:', DATABASE_URL);
 
-console.log('✅ DATABASE_URL found, connecting...');
-
-export const sequelize = new Sequelize(databaseUrl, {
+export const sequelize = new Sequelize(DATABASE_URL, {
   dialect: 'postgres',
   logging: false,
   pool: { max: 10, min: 0, acquire: 30000, idle: 10000 },
